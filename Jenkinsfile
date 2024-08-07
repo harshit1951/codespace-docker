@@ -10,7 +10,7 @@ pipeline {
 
     tools {
         maven "Maven_Version"
-	docker "Docker"
+	dockerTool 'Docker'
     }
 
     stages {
