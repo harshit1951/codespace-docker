@@ -44,7 +44,7 @@ pipeline {
             steps {
                 script {
                     // Run the Docker container with the specified volume
-                    sh "docker run --name ${CONTAINER_NAME} -d -p 8080:8080 -v ${DOCKER_VOLUME}:/app/target ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    sh "docker run --name ${DOCKER_CONTAINER} -d -p 8080:8080 -v ${DOCKER_VOLUME}:/app/target ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
             }
         }
@@ -54,7 +54,7 @@ pipeline {
         always {
             script {
                 // Clean up Docker container after the job finishes
-                sh "docker rm -f ${CONTAINER_NAME} || true"
+                sh "docker rm -f ${DOCKER_CONTAINER} || true"
                 // Optionally, clean up Docker volume
                 sh "docker volume rm ${DOCKER_VOLUME} || true"
             }
