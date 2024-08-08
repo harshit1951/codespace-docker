@@ -55,7 +55,7 @@ pipeline {
             steps {
                 script {
                     // Run the Docker container with the specified volume
-                    sh "docker run --name ${DOCKER_CONTAINER} -d -p 8080:8080 -v ${DOCKER_VOLUME}:/app/target ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    sh "docker run --name ${DOCKER_CONTAINER} -d -p 8090:8080 -v ${DOCKER_VOLUME}:/app/target ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
             }
         }
