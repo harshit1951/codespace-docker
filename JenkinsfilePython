@@ -1,11 +1,13 @@
 pipeline {
     agent any	 
 
-      stage('Running Python Program') {
+       stages {
+	stage('Running the Program') {
             steps {
                 sh 'python3 Pyramid.py'
             }
-       }
+        }	    
+    }
 
     post {
 	always {
