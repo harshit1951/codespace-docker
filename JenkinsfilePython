@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+	stage('Changing Directory') {
+            steps {
+                sh 'cd Python_Basics'
+            }
+        }	 
+
+      stage('Running Python Program') {
+            steps {
+                sh 'python3 Pyramid.py'
+            }
+        }
+    }
+
+    post {
+	always {
+	    archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
+        }
+    }
+}
