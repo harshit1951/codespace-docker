@@ -5,8 +5,7 @@ pipeline {
             steps {
                 sh 'python3 Pyramid.py'
             }
-        }
-    }
+       }
 
     post {
 	always {
