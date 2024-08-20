@@ -1,12 +1,5 @@
 pipeline {
-    agent any
-
-    stages {
-	stage('Changing Directory') {
-            steps {
-                sh 'cd Python_Basics'
-            }
-        }	 
+    agent any	 
 
       stage('Running Python Program') {
             steps {
