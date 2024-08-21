@@ -20,8 +20,8 @@ pipeline {
 	   steps {
 		script {
                     // Find the Docker installation and add it to the PATH
-                    def dockerHome = tool name: 'Docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-                    env.PATH = "${dockerHome}/bin:${env.PATH}"
+                    // def dockerHome = tool name: 'Docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
+                    // env.PATH = "${dockerHome}/bin:${env.PATH}"
                 
                     // Build the Docker image from the Dockerfile
                     docker.build("${DOCKER_IMAGE}:${DOCKER_TAG}")
