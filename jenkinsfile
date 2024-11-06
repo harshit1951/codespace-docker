@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Get some code from a GitHub repository
+                git branch: 'docker-compose', url: 'https://github.com/harshit1951/codespace-docker.git'
+            }
+        }
+        
+        stage('Run Compose Command') {
+            steps {
+                // Running the command in detached mode
+                sh 'docker-compose up -d'
+            }
+        }
+        
+        stage('Verify Stage') {
+            steps {
+                // Verifying if containers have been made or not
+                sh 'docker-compose ps'
+            }
+        }
+        
+        stage('Testing the URLs') {
+            steps {
+                // Testing if website if live or not
+                sh 'curl -f http://localhost:8082'  // Test the first container
+                sh 'curl -f http://localhost:8083'  // Test the second container
+            }
+        }
+        
+        stage('Getting the Configs of Containers') {
+            steps {
+                // Running Docker Inspect on every container
+                sh 'docker-compose ps -q | xargs -I {} docker inspect {}'
+            }
+        }
+
+        stage('Deletion Stage') {
+            steps {
+                // Deleting the Containers and the Network
+                sh 'docker-compose down'
+            }
+        }
+    }
+}
