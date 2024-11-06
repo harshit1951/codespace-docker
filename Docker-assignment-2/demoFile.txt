@@ -1,2 +1,0 @@
-This is demo file for Assignment 2. 
-File to b moved in container.
