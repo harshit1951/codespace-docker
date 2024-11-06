@@ -1,0 +1,32 @@
+version: "3.3"
+services:
+ website:
+  image: nginx
+  ports:
+   - "8082:80"
+  restart: always
+  volumes:
+   - /tmp/volume-data:/var/www/html
+
+ website_2_new:
+  image: nginx
+  ports:
+   - "8083:80"
+  restart: always
+  volumes:
+   - nginxVol:/var/www/html
+  depends_on:
+   - website
+  networks:
+   my_network:
+    ipv4_address: 10.0.2.20
+
+networks:
+ my_network:
+  ipam:
+   driver: default
+   config:
+    - subnet: "10.0.2.0/24"
+
+volumes:
+  nginxVol:
